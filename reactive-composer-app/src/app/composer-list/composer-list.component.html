@@ -1,0 +1,31 @@
+<!--
+Danielle Taplin
+composer-list.component.html
+11/4/23
+HTML page for composer-list
+-->
+
+<!--display text input for searching by name -->
+<div class="txtSearch">
+  <input type="text" id="txtSearch" class="form-control" [formControl]="txtSearchControl" placeholder="Search by name" />
+</div>
+
+<!--create table displaying composer data-->
+<table class="table table-bordered">
+  <thead  class="table-dark">
+    <!--display table heading for name , ID, and genre-->
+    <tr>
+      <th scope="col">Composer ID</th>
+      <th  scope="col">Full name</th>
+      <th  scope="col">Genre</th>
+    </tr>
+  </thead>
+  <!--display composer data from the composer list component-->
+  <tbody *ngFor="let composer of composers">
+    <tr>
+      <td scope="row"> <a routerLink="/composer-details/{{composer.composerId}}">{{ composer.composerId }}</a></td>
+      <td scope="row">{{ composer.fullName }}</td>
+      <td>{{composer.genre}}</td>
+    </tr>
+  </tbody>
+</table>

@@ -1,0 +1,20 @@
+<!--
+Danielle Taplin
+composer-details.component.html
+11/4/23
+composer details component
+-->
+
+<!--list the composer's ID, name, and genre-->
+<div class="row">
+  <div class="col-sm-12">
+    <ul class="list-group">
+      <li class="list-group-item">Composer ID: {{ composer.composerId }}</li>
+      <li class="list-group-item">Full name: {{ composer.fullName}}</li>
+      <li class="list-group-item">Genre: {{ composer.genre }}</li>
+    </ul>
+    <br />
+    <!--display link back to the composer list-->
+    <a routerLink="/composer-list" class="float-right">Return to Composers</a>
+  </div>
+</div>
