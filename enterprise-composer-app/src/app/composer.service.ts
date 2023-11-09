@@ -6,14 +6,17 @@
 //import injectable from Angular, and the Composer interface
 import { Injectable } from '@angular/core';
 import { IComposer } from './composer.interface';
+import { Observable } from 'rxjs'
+import { of } from 'rxjs';
+import { map } from 'rxjs/operators';
 
-//create injectable provided in root, export the Composer service
+//create injectable provided in root, and export the Composer service
 @Injectable({
   providedIn: 'root'
 })
 export class ComposerService {
 
-   //create array of IComposer objects
+   //create an array of IComposer objects
    composers: Array<IComposer>;
 
    //create constructor to initialize the array with composer objects
@@ -38,19 +41,25 @@ export class ComposerService {
    }
 
    //declare method for returning all composer objects
-   getComposers() {
-     //Return array of composers
-     return this.composers;
+    getComposers(): Observable<IComposer[]> {
+     //return array of composers
+     return of(this.composers);
    }
 
    //declare method for returning specified composer based on id
    getComposer(composerId: number) : IComposer {
-     //For every composer object in the array:
+     //for every composer object in array:
      for (let composer of this.composers) {
-       //if composer Id equals the id parameter, return that composer
+       //if composer Id=Id parameter, return that composer
        if (composer.composerId === composerId) {
          return composer;
        }
      }
+   }
+
+   //declare function for filtering composers that returns array of observable IComposer objects
+   filterComposers(name: string) : Observable<IComposer[]> {
+    //return array of composer objects that include the name parameter in the fullName variable
+    return of(this.composers).pipe(map(composers => composers.filter(composer => composer.fullName.toLowerCase().indexOf(name) > -1)))
    }
 }
