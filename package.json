@@ -1,7 +1,6 @@
 {
   "name": "enterprise-composer-app",
   "version": "0.0.0",
-  "homepage": "https://dannieland.github.io/enterprise-composer-app/",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
